@@ -1,0 +1,2 @@
+class PowerUpManager:
+    pass

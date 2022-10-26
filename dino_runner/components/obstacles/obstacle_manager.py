@@ -1,0 +1,2 @@
+class ObstacleManager:
+    pass
