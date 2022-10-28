@@ -2,9 +2,16 @@ import pygame
 import os
 
 # Global Constants
-TITLE = "Chrome Dino Runner"
+TITLE = "Dino Dino runner"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
+
+
+#ICON = pygame.image.load(os.path.join(IMG_DIR, "sonic.png")).convert_alpha().subsurface((0, 0), (32, 32))
+
+#RUNNING = [
+#    pygame.image.load(os.path.join(IMG_DIR, "sonic.png")).convert_alpha().subsurface((40, 0), (32, 68)),
+
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
@@ -12,8 +19,8 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
 RUNNING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Hammer.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Hammer1.png")),
 ]
 
 RUNNING_SHIELD = [
@@ -26,13 +33,13 @@ RUNNING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
 ]
 
-JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
+JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
 JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
 JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
 
 DUCKING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2Hammer.png")),
 ]
 
 DUCKING_SHIELD = [
@@ -61,7 +68,10 @@ BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
 ]
 
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
+CLOUD = [
+    pygame.image.load(os.path.join(IMG_DIR, 'Other/cloud3.png')),
+    pygame.image.load(os.path.join(IMG_DIR, 'Other/cloud3.png')),
+]
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 

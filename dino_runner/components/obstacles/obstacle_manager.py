@@ -3,6 +3,7 @@ import random
 
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
+from dino_runner.components.obstacles.cloud import Cloud
 
 
 class ObstacleManager:
@@ -13,10 +14,11 @@ class ObstacleManager:
         obstacle_type = [
             Cactus(),
             Bird(),
+            Cloud(),
         ]
 
         if len(self.obstacles) == 0:            
-            self.obstacles.append(obstacle_type[random.randint(0,1)])
+            self.obstacles.append(obstacle_type[random.randint(0,2)])
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)

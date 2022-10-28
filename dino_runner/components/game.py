@@ -1,4 +1,5 @@
 import pygame
+from pygame import time
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 
@@ -29,6 +30,8 @@ class Game:
         self.running = False
 
         self.score = 0
+        
+        self.tempo = 0
 
         self.death_count = 0
 
@@ -59,6 +62,7 @@ class Game:
         self.power_up_manager.reset_power_ups()
         self.gaming_speed = 20
         self.score = 0
+        self.tempo = 0
         while self.playing:
             self.events()
             self.update()
@@ -75,20 +79,26 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.update_scores()
+        self.update_time()
         self.power_up_manager.update(self.score, self.game_speed, self.player)
         
     def update_scores(self):
         self.score += 1
         if self.score % 100 == 0:
             self.game_speed += 5
+    
+    def update_time(self):
+        self.tempo = round((pygame.time.get_ticks()) / 1000, 2)
+    
             
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((176,224,230))
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.draw_score()
+        self.draw_time()
         self.draw_power_up_time()
         self.power_up_manager.draw(self.screen)
         pygame.display.update()
@@ -109,6 +119,14 @@ class Game:
             self.screen,
             pos_x_center=1000,
             pos_y_center=50
+        )
+         
+    def draw_time(self):
+         draw_message_component(
+            f"Time: {self.tempo}",
+            self.screen,
+            pos_x_center=800,
+            pos_y_center=50
         )   
 
     def draw_power_up_time(self):
@@ -118,9 +136,9 @@ class Game:
                 draw_message_component(
                     f"{self.player.type.capitalize()} enabled for {time_to_show} seconds",
                     self.screen,
-                    font_size = 18,
+                    font_size = 24,
                     pos_x_center = 500,
-                    pos_y_center = 40
+                    pos_y_center = 30
                 )
             else:
                 self.player.has_power_up = False
@@ -135,18 +153,26 @@ class Game:
                 self.run()
 
     def show_menu(self):
-        self.screen.fill((100, 100, 255))
+        self.screen.fill((64,224,208))
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
            draw_message_component("Press any key to start", self.screen)
         else:
+            self.game_speed = 20
+            
+            draw_message_component("Keep trying bro, maybe someday you will get me", self.screen, pos_y_center=half_screen_height + 180)
             draw_message_component("Press any key to restart", self.screen, pos_y_center=half_screen_height + 140)
             draw_message_component(
                 f"Your Score: {self.score}",
                 self.screen,
                 pos_y_center=half_screen_height - 150
+            )            
+            draw_message_component(
+                f"Your Time: {self.tempo}",
+                self.screen,
+                pos_y_center=half_screen_height - 180
             )            
             draw_message_component(
                 f"Death count: {self.death_count}",
